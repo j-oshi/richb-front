@@ -2,28 +2,20 @@
 
 ## Project setup
 ```
-npm install
+git clone .. && cd ..
 ```
 
-### Compiles and hot-reloads for development
+### Build docker image
 ```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
+docker build -t <image name> .
 ```
 
-### Run your tests
+### Spin up the container
 ```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
+docker run -it -p 8080:80 --rm --name <container name> <image name>
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### See in browser
+```
+Go to localhost:8080
+```
