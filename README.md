@@ -1,4 +1,4 @@
-# client
+# Vuetify in docker container
 
 ## Project setup
 ```
