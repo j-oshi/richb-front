@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-layout
+    <!-- <v-layout
       text-center
       wrap
     >
@@ -58,7 +58,7 @@
             target="_blank"
           >
             {{ link.text }}
-          </a>
+          </a> -->
         </v-layout>
       </v-flex>
 
