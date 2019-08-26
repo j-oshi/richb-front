@@ -54,8 +54,8 @@
       this.loading = true
       console.log(process.env.VUE_APP_GRAPHQL_ENDPOINT)
       const menus = await this.$apollo.query({ query: GET_MAIN_MENU_QUERY })
+      console.log(menus.data.nodeQuery.entities)
       this.loading = false
-      console.log(menus)
     }  
     // methods: {
     //   onClick (e, item) {
