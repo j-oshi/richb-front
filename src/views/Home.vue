@@ -1,12 +1,12 @@
 <template>
   <v-content>
-    <v-container mx-auto ma-0 pa-0 fill-height>
+    <v-container id="page" mx-auto ma-0 pa-0 px-2 fill-height>
       <v-row justify="center">
         <v-col cols="12">
           <p v-if="title !== ''" class="headline">{{ title }}</p>
-          <PictureGrid />
-          <TextPicture />
-          <TwoColText />
+          <picture-grid v-if="pictureList.length > 0" :pictures="pictureList"/>
+          <text-picture v-if="pictureAndText.length > 0" :textcontents="pictureAndText"/>
+          <two-text v-if="twoCol.length > 0" :twoCols="twoCol"/>
         </v-col>
       </v-row>
     </v-container>
@@ -15,21 +15,21 @@
 
 <script>
 import { GET_FRONT_PAGE_QUERY } from "@/queries/FrontPageQuery";
-import PictureGrid from "@/components/paragraph/PictureGrid";
-import TextPicture from "@/components/paragraph/TextPicture";
-import TwoColText from "@/components/paragraph/TwoColText";
 
 export default {
   name: "FrontPage",
   components: {
-    PictureGrid,
-    TextPicture,
-    TwoColText
+    PictureGrid: () => import('@/components/paragraph/PictureGrid'),
+    TextPicture: () => import('@/components/paragraph/TextPicture'),
+    TwoText: () => import('@/components/paragraph/TwoColText'),
   },
   data() {
     return {
       title: '',
-      menus: []
+      menus: [],
+      pictureList: [],
+      pictureAndText: [],
+      twoCol: [],
     };
   },
   async mounted() {
@@ -37,13 +37,17 @@ export default {
     let paraData = await this.$apollo.query({ query: GET_FRONT_PAGE_QUERY });
     let queryData = paraData.data.nodeById;
     this.title = queryData.title;
-    console.log(queryData);
+    let picture = queryData.paragraphs.filter(type => type.entity.__typename === "ParagraphProduct");
+    this.pictureList = picture['0'].entity.products;
+    this.pictureAndText = queryData.paragraphs.filter(type => type.entity.__typename === "ParagraphContentAndLink");
+    this.twoCol = queryData.paragraphs.filter(type => type.entity.__typename === "ParagraphTwoCol");
   }
 };
 </script>
 
 <style scoped>
-/* .container {
-  max-width: 960px;
-} */
+#page {
+  /* max-width: 960px; */
+  min-height: calc(100vh - 172px);
+}
 </style>
