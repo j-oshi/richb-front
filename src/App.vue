@@ -1,22 +1,22 @@
 <template>
   <v-app>
-    <div id="app">
-      <Header />
-      <router-view />
-      <Footer />
+    <div>
+      <core-header />
+      <core-view />
+      <core-footer />
     </div>
   </v-app>
 </template>
 
 <script>
-import Header from './components/core/Header'
 import Footer from './components/core/Footer'
 
 export default {
   name: 'App',
   components: {
-    Header,
-    Footer,
+    CoreHeader: () => import('./components/core/Header'),
+    CoreView: () => import('./components/core/View'),
+    CoreFooter: () => import('./components/core/Footer'),
   },
   data: () => ({
     //
