@@ -7,6 +7,7 @@
           <picture-grid v-if="pictureList.length > 0" :pictures="pictureList"/>
           <text-picture v-if="pictureAndText.length > 0" :textcontents="pictureAndText"/>
           <two-text v-if="twoCol.length > 0" :twoCols="twoCol"/>
+          <Address v-if="locations.length > 0" :locations="locations"/>
         </v-col>
       </v-row>
     </v-container>
@@ -22,6 +23,7 @@ export default {
     PictureGrid: () => import('@/components/paragraph/PictureGrid'),
     TextPicture: () => import('@/components/paragraph/TextPicture'),
     TwoText: () => import('@/components/paragraph/TwoColText'),
+    Address: () => import('@/components/paragraph/Address'),
   },
   data() {
     return {
@@ -30,6 +32,7 @@ export default {
       pictureList: [],
       pictureAndText: [],
       twoCol: [],
+      locations: [],
     };
   },
   async mounted() {
@@ -41,6 +44,7 @@ export default {
     this.pictureList = picture['0'].entity.products;
     this.pictureAndText = queryData.paragraphs.filter(type => type.entity.__typename === "ParagraphContentAndLink");
     this.twoCol = queryData.paragraphs.filter(type => type.entity.__typename === "ParagraphTwoCol");
+    this.locations = queryData.paragraphs.filter(type => type.entity.__typename === "ParagraphContactUs");
   }
 };
 </script>
