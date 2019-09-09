@@ -5,7 +5,11 @@ export const GET_MAIN_MENU_QUERY = gql`
     nodeQuery (filter: {conditions: [{field: "type", value: ["pages"]}]}) {
       entities {
         entityLabel
-        entityId     
+        entityId 
+        entityUrl {
+          routed
+          path
+        }
       }
     }
   }

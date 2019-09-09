@@ -14,10 +14,11 @@
               text
               v-for="(menu, entityId) in menus"
               :key="entityId"
-              :to="menu.entityLabel | slugify"
+              :to="menu.entityUrl.path | slugify"
               class="ml-0 hidden-sm-and-down"
               @click="onClick($event, menu.entityLabel)"
             >{{ menu.entityLabel }}</v-btn>
+            
           </v-toolbar-items>
         </v-layout>
       </v-container>
@@ -27,23 +28,19 @@
         <v-list-item-avatar>
           <v-img src="https://randomuser.me/api/portraits/men/78.jpg"></v-img>
         </v-list-item-avatar>
-
         <v-list-item-content>
           <v-list-item-title>John Leider</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
-
       <v-divider></v-divider>
-
       <v-list dense>
         <v-list-item               
             v-for="(menu, entityId) in menus"
             :key="entityId"
-            :to="menu.entityLabel | slugify">
-          <v-list-item-icon>
+            :to="menu.entityUrl.path | slugify">
+          <v-list-item-icon>     
             <!-- <v-icon>{{ item.icon }}</v-icon> -->
           </v-list-item-icon>
-
           <v-list-item-content>
             <v-list-item-title>{{ menu.entityLabel }}</v-list-item-title>
           </v-list-item-content>
@@ -79,7 +76,7 @@ export default {
   },
   filters: {
     slugify: function(text) {
-      let home = text === 'Home' ? '/' : text
+      let home = text === '/home' ? '/' : text
       return home === "/" ? home : home
         .toString()
         .toLowerCase()

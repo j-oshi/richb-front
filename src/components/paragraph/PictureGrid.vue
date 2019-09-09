@@ -12,7 +12,7 @@
               sm="3"
               md="2"
             >
-              <v-card flat tile class="d-flex">
+              <v-card flat tile class="d-flex mx-1">
                 <v-img
                   :src="picture.entity.image.large.url"
                   :lazy-src="`https://picsum.photos/10/6?image`"
