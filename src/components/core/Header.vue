@@ -14,10 +14,10 @@
               text
               v-for="(menu, entityId) in menus"
               :key="entityId"
-              :to="menu.path | slugify"
+              :to="menu.url.path | slugify"
               class="ml-0 hidden-sm-and-down"
               @click="onClick($event, menu.label)"
-            >{{ menu.entityLabel }}</v-btn>
+            >{{ menu.label }}</v-btn>
             
           </v-toolbar-items>
         </v-layout>
@@ -37,12 +37,12 @@
         <v-list-item               
             v-for="(menu, entityId) in menus"
             :key="entityId"
-            :to="menu.entityUrl.path | slugify">
+            :to="menu.url.path | slugify">
           <v-list-item-icon>     
             <!-- <v-icon>{{ item.icon }}</v-icon> -->
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title>{{ menu.entityLabel }}</v-list-item-title>
+            <v-list-item-title>{{ menu.label }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -64,7 +64,6 @@ export default {
   async mounted() {
     this.loading = true;
     let menuData = await this.$apollo.query({ query: GET_MAIN_MENU_QUERY });
-    console.log(menuData.data.menuByName.links);
     this.menus = menuData.data.menuByName.links;
     this.loading = false;
   },
