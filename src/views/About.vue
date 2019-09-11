@@ -1,7 +1,7 @@
 <template>
   <v-content>
     <v-container id="page" mx-auto ma-0 pa-0 px-2>
-      <v-row justify="top">
+      <v-row>
         <v-col cols="12">
           <p v-if="title !== ''" class="headline">{{ title }}</p>
           <picture-grid v-if="pictureList.length > 0" :pictures="pictureList"/>
