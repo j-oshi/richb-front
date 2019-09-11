@@ -84,3 +84,25 @@ export const TwoCol = gql `
     }
   }
 `;
+
+export const Media = gql `
+  fragment ParagraphMedia on ParagraphMedia {
+    ... on ParagraphMedia {
+      media: fieldMedi {
+        entity {
+          thumbnail {
+            alt
+            large: derivative (style: LARGE) {
+              url
+              width
+              height
+            }
+          }
+        }
+      }
+      fieldContentText {
+        processed
+      }
+    }
+  }
+`;

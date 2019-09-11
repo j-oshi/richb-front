@@ -1,6 +1,6 @@
 <template>
   <v-content>
-    <v-container ma-0 pa-0 fill-height>
+    <v-container id="page" mx-auto ma-0 pa-0 px-2>
       <v-row justify="center">
         <v-col cols="12">
           <p class="headline">Contact</p>
@@ -15,3 +15,10 @@ export default {
     
 }
 </script>
+
+<style scoped>
+#page {
+  max-width: 960px;
+  min-height: calc(100vh - 172px);
+}
+</style>

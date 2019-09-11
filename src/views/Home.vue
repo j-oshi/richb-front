@@ -1,9 +1,10 @@
 <template>
   <v-content>
-    <v-container id="page" mx-auto ma-0 pa-0 px-2 fill-height>
+    <v-container id="page" mx-auto ma-0 pa-0 px-2>
       <v-row justify="center">
         <v-col cols="12">
-          <p v-if="title !== ''" class="headline">{{ title }}</p>
+          <p v-if="title !== ''" class="headline" my-0 py-0>{{ title }}</p>
+          <Carousel :mediaItems="mediaData"/>
           <picture-grid v-if="pictureList.length > 0" :pictures="pictureList"/>
           <text-picture v-if="pictureAndText.length > 0" :textcontents="pictureAndText"/>
           <two-text v-if="twoCol.length > 0" :twoCols="twoCol"/>
@@ -15,11 +16,13 @@
 </template>
 
 <script>
+import { GET_MEDIA_QUERY } from "@/queries/MediaQuery";
 import { GET_FRONT_PAGE_QUERY } from "@/queries/FrontPageQuery";
 
 export default {
   name: "FrontPage",
   components: {
+    Carousel: () => import('@/components/Carousel'),
     PictureGrid: () => import('@/components/paragraph/PictureGrid'),
     TextPicture: () => import('@/components/paragraph/TextPicture'),
     TwoText: () => import('@/components/paragraph/TwoColText'),
@@ -28,7 +31,6 @@ export default {
   data() {
     return {
       title: '',
-      menus: [],
       pictureList: [],
       pictureAndText: [],
       twoCol: [],
@@ -36,6 +38,8 @@ export default {
     };
   },
   async mounted() {
+    let mediaQuery = await this.$apollo.query({ query: GET_MEDIA_QUERY });
+    this.mediaData = mediaQuery.data.nodeById.fieldMedia;
     this.loading = true;
     let paraData = await this.$apollo.query({ query: GET_FRONT_PAGE_QUERY });
     let queryData = paraData.data.nodeById;
