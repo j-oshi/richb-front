@@ -35,6 +35,7 @@ export default {
       pictureAndText: [],
       twoCol: [],
       locations: [],
+      mediaData: [],
     };
   },
   async mounted() {
