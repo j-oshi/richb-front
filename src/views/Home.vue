@@ -3,7 +3,7 @@
     <v-container id="page" mx-auto ma-0 pa-0 px-2>
       <v-row justify="center">
         <v-col cols="12">
-          <p v-if="title !== ''" class="headline" my-0 py-0>{{ title }}</p>
+          <p v-if="title !== ''" class="headline" mx-2 my-0 py-0>{{ title }}</p>
           <Carousel :mediaItems="mediaData"/>
           <picture-grid v-if="pictureList.length > 0" :pictures="pictureList"/>
           <text-picture v-if="pictureAndText.length > 0" :textcontents="pictureAndText"/>

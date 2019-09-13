@@ -12,6 +12,7 @@
           <v-toolbar-items>
             <v-btn
               text
+              rounded
               v-for="(menu, entityId) in menus"
               :key="entityId"
               :to="menu.url.path | slugify"
