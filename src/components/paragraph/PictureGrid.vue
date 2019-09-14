@@ -12,24 +12,27 @@
               sm="3"
               md="2"
             >
-              <v-card flat tile class="d-flex mx-1">
-                <v-img
-                  :src="picture.entity.image.large.url"
-                  :lazy-src="`https://picsum.photos/10/6?image`"
-                  aspect-ratio="1"
-                  class="grey lighten-2"
-                >
-                  <template v-slot:placeholder>
-                    <v-row
-                      class="fill-height ma-0"
-                      align="center"
-                      justify="center"
+              <a :href="picture.entity.path.alias">
+                <v-card flat tile class="d-flex mx-1">
+
+                    <v-img
+                      :src="picture.entity.image.large.url"
+                      :lazy-src="`https://picsum.photos/10/6?image`"
+                      aspect-ratio="1"
+                      class="grey lighten-2"
                     >
-                      <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
-                    </v-row>
-                  </template>
-                </v-img>
-              </v-card>
+                      <template v-slot:placeholder>
+                        <v-row
+                          class="fill-height ma-0"
+                          align="center"
+                          justify="center"
+                        >
+                          <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                        </v-row>
+                      </template>
+                    </v-img>   
+                </v-card>
+              </a>
             </v-col>
           </v-row>
         </v-container>

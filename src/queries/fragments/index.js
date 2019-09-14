@@ -17,6 +17,9 @@ export const Product = gql `
                 width
               }
             }
+            path {
+              alias
+            }
             body: body {
               value
             }
