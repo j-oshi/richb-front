@@ -24,6 +24,11 @@ export default new Router({
       name: 'contact',
       component: () => import('@/views/Contact.vue')
     },
+    {
+      path: '/product/:id',
+      name: 'product',
+      component: () => import('@/views/Product.vue')
+    },
 
   ]
 })

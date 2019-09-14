@@ -18,8 +18,7 @@
               :to="menu.url.path | slugify"
               class="ml-0 hidden-sm-and-down"
               @click="onClick($event, menu.label)"
-            >{{ menu.label }}</v-btn>
-            
+            >{{ menu.label }}</v-btn>            
           </v-toolbar-items>
         </v-layout>
       </v-container>
@@ -65,7 +64,7 @@ export default {
   async mounted() {
     this.loading = true;
     let menuData = await this.$apollo.query({ query: GET_MAIN_MENU_QUERY });
-    this.menus = menuData.data.menuByName.links;
+    this.menus = menuData.data.menuByName.links.filter(link => link.label !== 'Inaccessible');
     this.loading = false;
   },
   methods: {
